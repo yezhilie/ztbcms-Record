@@ -89,8 +89,8 @@
         </div>
     </form>
 </div>
-<script src="{$config_siteurl}statics/js/common.js?v"></script>
-<script src="//cdn.bootcss.com/vue/2.2.6/vue.js"></script>
+<script src="{$config_siteurl}statics/js/common.js"></script>
+<script src="{$config_siteurl}statics/js/vue/vue.js"></script>
 <script>
     $(document).ready(function () {
         new Vue({
@@ -129,18 +129,17 @@
                         where: this.where
                     }
                     $.ajax({
-                        url: "{:U('index')}",
+                        url: "{:U('Record/Record/lists')}",
                         data: where,
                         dataType: 'json',
-                        type: 'get',
+                        type: 'post',
                         success: function (res) {
-                            console.log(res)
-                            var data = res.info
-                            that.lists = data.lists
-                            that.page = data.page
-                            that.temp_page = data.page
-                            that.limit = data.limit
-                            that.page_count = data.page_count
+                            var data = res.data;
+                            that.lists = data.lists;
+                            that.page = data.page;
+                            that.temp_page = data.page;
+                            that.limit = data.limit;
+                            that.page_count = data.page_count;
                         }
                     })
                 },
